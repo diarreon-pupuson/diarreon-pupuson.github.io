@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#141a36"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Tech Dev Tycoon 2008–2040</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>:root{--ink:#0a0f26;--win:#eaf2fb;--win2:#d3e2f5;--bd:#0a0f26;--tx:#0a0f26;--mu:#4a5780;--ac:#0b7f78;--vi:#6b46c1;--bad:#c9391b;--ok:#1e8f4e;--am:#ffd23f;--or:#ff7a00;--px:"Press Start 2P",Consolas,monospace;--bo:"VT323","Courier New",monospace}
+*{box-sizing:border-box}
+body{margin:0;color:var(--tx);font:20px/1.2 var(--bo);background:repeating-conic-gradient(#233772 0 25%,#1f2f66 0 50%) 0 0/48px 48px fixed}
+b{font-weight:400;text-shadow:1px 0 0 currentColor}
+img{image-rendering:pixelated}code{background:var(--win2);padding:0 4px}
+#app{display:grid;grid-template-columns:200px 1fr;grid-template-areas:"t t" "n m";min-height:100vh}
+#hd{grid-area:t;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;background:#141a36;border-bottom:4px solid var(--am);position:sticky;top:0;z-index:5}
+#hi{display:contents}
+#hd span{background:var(--win);color:var(--ink);border:3px solid var(--ink);box-shadow:0 3px 0 #000a;padding:2px 9px;border-radius:3px;font-size:20px;white-space:nowrap}
+#hi>span:nth-child(3){background:var(--am)}#hi>span:nth-child(4){background:#9be7e1}
+#hd .sp{margin-left:auto;display:flex;gap:8px;padding:0;border:0;background:none;box-shadow:none}
+.lg{font:11px/1.4 var(--px);color:var(--am);margin-right:6px;text-shadow:2px 2px 0 #e4572e}
+.pb{flex-basis:100%;height:10px;background:#0a0f26;border:2px solid #3b4a9a}
+.pb i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--am) 0 6px,#e0a800 6px 8px);transition:width .3s steps(6)}
+.bar{height:16px;background:#fff;border:3px solid var(--ink);margin:6px 0;overflow:hidden}
+.bar i{display:block;height:100%;background:repeating-linear-gradient(90deg,#2ec4b6 0 8px,#1b9a8f 8px 10px);transition:width .3s steps(6)}
+.bar i.f{background:repeating-linear-gradient(90deg,#ff9f1c 0 8px,#e4572e 8px 10px)}
+#nav{grid-area:n;background:#182049;border-right:4px solid var(--ink);padding:14px 12px;display:flex;flex-direction:column;gap:12px}
+#nav button{text-align:left;font-size:22px;padding:8px 12px}
+#main{grid-area:m;padding:18px;min-width:0}#main>small{color:#c7d4f7}
+button{font:inherit;font-size:19px;color:var(--ink);background:#fff;border:3px solid var(--ink);border-radius:3px;padding:5px 10px;cursor:pointer;box-shadow:0 4px 0 var(--ink)}
+@media(hover:hover){button:hover:not(:disabled){background:#fff3b0}}
+button:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+button:disabled{opacity:.5;cursor:not-allowed;box-shadow:0 2px 0 var(--ink);background:#c5d3ea}
+button:focus-visible,input:focus-visible{outline:3px dashed var(--or);outline-offset:3px}
+button.on{background:var(--am)}@media(hover:hover){button.on:hover:not(:disabled){background:#ffe27a}}
+button.go{background:#5fd08a}@media(hover:hover){button.go:hover:not(:disabled){background:#82e0a4}}
+button.rd{background:#ffe1dc;color:#a8200d}
+.card{background:var(--win);border:4px solid var(--ink);border-radius:3px;padding:12px;margin-bottom:16px;box-shadow:6px 6px 0 #0a0f26aa}
+h2{display:inline-block;margin:0 0 12px;padding:8px 10px;background:var(--am);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);color:var(--ink);font:11px/1.5 var(--px)}
+.card>h2:first-child{display:block;margin:-12px -12px 12px;padding:9px 12px;background:var(--ink);color:var(--am);border:0;box-shadow:none}
+h3{margin:0 0 6px;font:400 23px/1.1 var(--bo);color:var(--ink)}
+small,.mu{color:var(--mu);font-size:17px}
+.row{display:flex;flex-wrap:wrap;gap:10px 8px;align-items:center;margin-top:8px}
+.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;margin-top:8px}.g3>div{background:#fff;border:3px solid var(--ink);padding:6px 4px}
+.dv{display:grid;grid-template-columns:290px 1fr;gap:16px}@media(max-width:800px){.dv{grid-template-columns:1fr}}
+.nd{display:block;width:100%;text-align:left;margin-bottom:6px;font-size:18px;padding:5px 9px}.nd small{display:block}
+.nd.done{background:#b9f0cd}.nd.done:disabled{opacity:1}.nd.fut{border-style:dashed}
+table{width:100%;border-collapse:collapse;font-size:18px}
+th,td{padding:5px 8px;border-bottom:2px dotted #9db4d6;text-align:left}
+th{background:var(--win2);font-weight:400;border-bottom:3px solid var(--ink)}
+tr:nth-child(even) td{background:#dde9f7}
+.log{max-height:170px;overflow:auto;font-size:18px;color:#c7d4f7;background:#141a36;border:3px solid var(--ink);padding:8px}.log div:first-child{color:var(--am)}
+.mk{text-align:center;font-size:18px;color:#fff;padding:12px;border:3px solid var(--ink);background:repeating-linear-gradient(0deg,#0000 0 15px,#ffffff10 15px 16px),repeating-linear-gradient(90deg,#0000 0 15px,#ffffff10 15px 16px),#1d2a5e}.mk small{color:#b7c6ee}
+.fr{margin:8px auto 12px;border:4px solid #05081a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;overflow:hidden;max-width:100%;box-shadow:inset 0 0 0 3px #ffffff22,0 6px 0 #05081a}
+.fr.gl{box-shadow:0 0 0 4px var(--am),0 6px 0 4px #05081a;animation:pl 1.2s steps(1) infinite}
+.fr.wk{animation:wk .6s steps(1) infinite}.fr.gl.wk{animation:pl 1.2s steps(1) infinite,wk .6s steps(1) infinite}
+@keyframes pl{50%{box-shadow:0 0 0 4px var(--or),0 6px 0 4px #05081a}}@keyframes wk{50%{transform:translateY(-4px)}}
+.big{font-size:34px}.chs{display:flex;flex-wrap:wrap;justify-content:center;gap:3px;padding:0 4px}
+.ch{font-size:17px;background:#0008;border-radius:3px;padding:1px 3px;color:#fff}.ch.off{opacity:.25}.ch sup{font-size:11px;color:var(--am)}
+.fi{border-top:10px solid #8aa0c8}.fi.s2{border-top-color:#5fb0e8}.fi.s3{border-top-color:#9ca3af}.fi.s4{border-top-color:var(--vi)}.fi.s5{border-top-color:var(--am);box-shadow:6px 6px 0 #0a0f26aa,0 0 0 3px var(--am)}
+input[type=text],select{background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:3px;padding:6px 8px;font:inherit}
+input[type=text]{width:100%;margin:6px 0 10px}input[type=range]{accent-color:#2a6fdb}
+#ov{position:fixed;inset:0;background:#0a0f26d9;display:none;align-items:center;justify-content:center;z-index:9;padding:20px}#ov .card{max-width:440px;text-align:center}
+#md{position:fixed;inset:0;z-index:15;background:#0a0f26cc;display:none;align-items:center;justify-content:center;padding:16px}#md .card{max-width:420px;text-align:center}
+#ov .card,#md .card{animation:pop .25s steps(3)}@keyframes pop{from{transform:scale(.88)}}
+#ts{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--am);color:var(--ink);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:8px 14px;display:none;z-index:30;max-width:90%;font-size:20px}
+#menu{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto;background:linear-gradient(#1b2a6b 0 16%,#2c3f96 16% 30%,#4a62c4 30% 42%,#8a97e6 42% 52%,#ffb86b 52% 60%,#ffd23f 60% 66%,#0e1330 66%)}
+#menu::before{content:"";position:fixed;left:0;right:0;bottom:0;height:42vh;pointer-events:none;background-repeat:no-repeat;
+background-image:linear-gradient(#0e1330,#0e1330),linear-gradient(#171e4a,#171e4a),linear-gradient(#0e1330,#0e1330),linear-gradient(#171e4a,#171e4a),linear-gradient(#0e1330,#0e1330),linear-gradient(#171e4a,#171e4a),linear-gradient(#0e1330,#0e1330),linear-gradient(#171e4a,#171e4a),linear-gradient(#0e1330,#0e1330),linear-gradient(#171e4a,#171e4a);
+background-position:0 100%,9% 100%,17% 100%,28% 100%,38% 100%,50% 100%,59% 100%,70% 100%,79% 100%,92% 100%;
+background-size:8% 55%,6% 80%,9% 45%,7% 95%,10% 60%,6% 75%,9% 100%,7% 55%,8% 85%,11% 65%}
+.mc{max-width:520px;width:100%;text-align:center;position:relative;z-index:1}
+.neon{margin:0 0 6px;font:clamp(24px,7vw,38px)/1.4 var(--px);color:var(--am);text-shadow:3px 3px 0 var(--or),6px 6px 0 var(--ink)}.fst .neon{animation:drop .5s steps(5)}
+@keyframes drop{from{transform:translateY(-36px);opacity:0}}
+.mc>p.mu{color:#fff;font-size:22px;text-shadow:2px 2px 0 var(--ink);margin:10px 0 18px}
+.mb{display:block;width:100%;margin:10px 0 14px;padding:12px;font-size:23px}.lgs button{font-size:26px}
+@media(max-width:700px){#app{grid-template-columns:1fr;grid-template-areas:"t" "n" "m"}#nav{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:4px solid var(--ink);padding:10px}#nav button{white-space:nowrap;font-size:20px}#hd .sp{margin-left:0}#main{padding:12px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.cr{display:flex;gap:10px;align-items:flex-start}.av{flex:none;background:#fff;border:3px solid var(--ink);padding:3px 4px 0}.av svg,.pv svg,.av2 svg{display:block}
+.cs svg{vertical-align:middle;margin:-3px 3px 0 0}
+.cz{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:flex-start}.pv{background:#1d2a5e;border:3px solid var(--ink);padding:10px 14px 4px}.cz>div:last-child{flex:1 1 240px;min-width:0}.cr2{margin-bottom:8px}
+.sw{width:30px;height:30px;padding:0}.sw.on{border-color:#fff;box-shadow:0 0 0 3px var(--ink),0 4px 0 3px var(--ink);transform:translateY(-2px)}
+.os{position:relative;height:230px;margin-bottom:16px;border:4px solid var(--ink);box-shadow:6px 6px 0 #0a0f26aa;overflow:hidden;background:var(--wl)}
+.os::before{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;border-top:4px solid var(--ink);background:repeating-conic-gradient(var(--f1) 0 25%,var(--f2) 0 50%) 0 0/32px 32px}
+.o0{--wl:#8a8f9e;--f1:#6b7080;--f2:#5f6474}.o1{--wl:#cfe3f1;--f1:#b5c9dc;--f2:#a8bdd2}.o2{--wl:#9fd3e6;--f1:#7fa6c9;--f2:#6f97ba}.o3{--wl:#8fd3ff;--f1:#5fb860;--f2:#53a955}
+.wn{position:absolute;left:60%;top:10%;width:32%;height:34%;border:4px solid var(--ink)}
+.o0 .wn{background:repeating-linear-gradient(#aab4c6 0 10px,#7d879b 10px 12px)}
+.o1 .wn,.o2 .wn,.o3 .wn{background:linear-gradient(var(--ink),var(--ink)) 50% 0/4px 100% no-repeat,linear-gradient(var(--ink),var(--ink)) 0 50%/100% 4px no-repeat,#bfe8ff}
+.sg{position:absolute;left:10px;top:10px;max-width:46%;padding:6px 8px;background:var(--am);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font:8px/1.5 var(--px);color:var(--ink)}
+.dc{position:absolute;font-size:28px;line-height:1}
+.sls{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;gap:6px;padding:0 8px}
+.sl{position:relative;flex:0 1 66px;min-width:0;text-align:center}.sl small{display:block;color:#fff;text-shadow:1px 1px 0 var(--ink);font-size:16px}.sl.em{opacity:.55}
+.av2{position:relative;margin:0 auto -14px;width:40px}
+.dk{position:relative;z-index:1;height:14px;background:#b07a45;border:3px solid var(--ink)}
+.mn{position:absolute;right:-3px;bottom:100%;width:16px;height:11px;background:#1d3a5e;border:3px solid var(--ink)}.dk.off .mn{background:#334}
+.os.act .dk:not(.off) .mn{background:#2ec4b6;animation:mb 1s steps(1) infinite}@keyframes mb{50%{background:#9be7e1}}
+.os.act .sl:not(.em) .av2{animation:hp .6s steps(1) infinite}.sl:nth-child(2n) .av2{animation-delay:.3s}@keyframes hp{50%{transform:translateY(-2px)}}
+.bb{position:absolute;right:2px;top:-16px;z-index:2;font-size:16px}
+@media(max-width:700px){.os{height:210px}}
+.ac{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.ai{display:block;width:100%;text-align:left;background:var(--win);padding:6px 10px}.ai .bar{display:block;margin:5px 0 0;height:12px}
+.hint{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px;padding:8px 12px;background:var(--am);border:3px solid var(--ink);box-shadow:4px 4px 0 #0a0f26aa}.hint span{flex:1 1 240px}
+.tg{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:16px;align-items:start;scroll-margin-top:120px}.tdp{position:sticky;top:120px}
+.brn{display:flex;gap:14px;align-items:center;padding:8px 0;border-bottom:2px dotted #9db4d6}.brn:last-child{border:0}
+.bl{position:relative;flex:none;width:130px;text-align:center}.bl::after{content:"";position:absolute;right:-22px;top:50%;width:22px;height:4px;background:var(--ink)}.bi{font-size:30px;line-height:1.1}.bl small{display:block}.bl .tr{color:#a85c00}
+.nts{display:flex;gap:16px;overflow-x:auto;padding:8px 8px 12px;flex:1}
+.nt{position:relative;flex:none;width:92px;min-height:100px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;text-align:center;font-size:16px;line-height:1}
+.nt:not(:last-child)::after{content:"";position:absolute;left:calc(100% + 3px);top:46%;width:16px;height:4px;background:var(--ink)}
+.nt .ni{font-size:24px;line-height:1}.nt .nn{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.05}.nt small{font-size:15px;margin-top:auto}
+.nt.done{background:#b9f0cd}.nt.done:not(:last-child)::after{background:var(--ok)}
+.nt.act{background:var(--am);animation:nb 1s steps(1) infinite}@keyframes nb{50%{background:#fff3b0}}
+.nt.av{background:#fff;border-color:var(--or);box-shadow:0 4px 0 var(--ink),0 0 0 3px var(--or)}
+.nt.lk{background:#c5d3ea;opacity:.7}.nt.fut{border-style:dashed}.nt.sel{outline:3px solid #2a6fdb;outline-offset:3px}
+@media(max-width:1100px){.tg{grid-template-columns:1fr}.tdp{position:static;order:-1}}
+@media(max-width:700px){.ac{grid-template-columns:1fr}.brn{flex-direction:column;align-items:stretch}.bl{width:auto}.bl::after{display:none}}
+/* ===== versión móvil ===== */
+html,body{overscroll-behavior-y:contain}
+body{-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+input{-webkit-user-select:text;user-select:text}
+#app{display:block;padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+#hd{padding:calc(6px + env(safe-area-inset-top)) 8px 6px;gap:6px}
+#hd .sp{order:0;flex:1 1 100%;margin:0;gap:6px}#hd .sp button{flex:1;padding:4px 0;min-height:40px}
+#hi{display:flex;order:1;flex:1 1 100%;gap:6px;overflow-x:auto;padding-bottom:4px}#hi>*{flex:none}#hi>span:nth-child(2){display:none}
+#hd span{font-size:17px;padding:1px 7px}.pb{order:2}
+#nav{position:fixed;left:0;right:0;bottom:0;z-index:7;flex-direction:row;gap:4px;padding:6px 6px calc(6px + env(safe-area-inset-bottom));border-right:0;border-bottom:0;border-top:4px solid var(--ink);overflow:visible}
+#nav button{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;padding:4px 0;min-height:54px;line-height:1;white-space:nowrap;box-shadow:0 3px 0 var(--ink)}
+#nav .e{font-size:22px}#nav .l{font-size:15px}
+#main{padding:12px 10px}
+.card{padding:10px;margin-bottom:14px;box-shadow:4px 4px 0 #0a0f26aa}.card>h2:first-child{margin:-10px -10px 10px}
+button{min-height:44px}.sw{width:42px;height:42px;min-height:42px}.nd{font-size:19px;padding:8px 10px}
+.gr{grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr))}.g3{gap:6px}
+.ac{grid-template-columns:1fr 1fr;gap:8px}.ai{min-height:48px;padding:5px 8px}.ai span:first-child{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hint{padding:8px 10px}.hint button{width:100%}
+.nt{width:84px;min-height:104px}.nts{padding-bottom:14px}
+.os{height:210px}.sls{justify-content:safe center;overflow-x:auto}.sl{flex:0 0 60px}.sg{font-size:7px;max-width:60%}
+table{font-size:17px}
+#menu{align-items:flex-start;padding:calc(16px + env(safe-area-inset-top)) 12px 16px}.mc{margin:auto}.neon{font-size:clamp(20px,8vw,34px)}
+#ts{bottom:calc(90px + env(safe-area-inset-bottom))}
+</style></head><body>
+<div id="app"><header id="hd"></header><nav id="nav"></nav><main id="main"></main></div><div id="ov"></div><div id="md"></div><div id="menu" class="fst"></div><div id="ts"></div>
+<script>
+(()=>{
+const D={
+phone:{n:"Teléfonos",i:"📱",s:2008,m:1.6,t:`Batería|🔋|T|2008 Li-ion 1500mAh;2013 Batería 3000mAh;2018 Carga inalámbrica rápida;2028 Batería de estado sólido;2035 Batería de grafeno de 7 días
+Pantalla|📱|D|2008 Táctil capacitiva;2012 Pantalla Retina;2017 OLED 120Hz;2023 Plegable;2031 Pantalla holográfica 3D
+Procesador|⚙️|T|2008 ARM 1 núcleo;2011 Dual-core;2014 Quad-core;2020 ARM 5nm con NPU;2033 Chip cuántico portátil
+Cámara|📷|D|2008 Cámara 2MP;2013 Cámara 13MP;2018 Cámaras múltiples;2021 Sensor 108MP;2030 Cámara computacional neuronal
+Red|📡|T|2008 Red 3G;2011 Red 4G LTE;2019 Red 5G;2029 Red 6G;2037 Red 7G satelital
+Materiales|🛡️|D|2008 Carcasa plástica;2013 Cuerpo de aluminio;2016 Lector de huella y vidrio;2027 Carcasa autorreparable;2036 Nanocerámica viva`},
+pc:{n:"Computadoras",i:"🖥️",s:2008,m:1,t:`Procesador|⚙️|T|2008 Core 2 Duo;2011 Quad-core;2017 Octa-core;2026 Chiplets 3D;2034 Cómputo fotónico
+Gráficos|🎮|T|2008 GPU dedicada;2012 GPU GDDR5;2018 Ray tracing;2025 Render con IA;2036 Render neural en vivo
+Refrigeración|❄️|D|2008 Ventiladores;2014 Refrigeración líquida;2020 Cámara de vapor;2030 Enfriamiento criogénico;2038 Superconductor ambiente
+Chasis|🖥️|D|2008 Torre plástica;2013 Chasis de aluminio;2019 Iluminación RGB modular;2029 Chasis autorreparable;2037 Nanomateriales vivos`},
+lap:{n:"Laptops",i:"💻",s:2008,m:1.2,t:`Batería|🔋|T|2008 Ion-litio 3h;2012 Ultrabook 9h;2019 Carga USB-C rápida;2028 Batería de estado sólido;2036 Autonomía de 7 días
+Pantalla|🖥️|D|2008 LCD 1366;2013 IPS Full HD;2018 OLED 4K;2027 MicroLED;2035 Pantalla enrollable
+Procesador|⚙️|T|2008 Core 2;2012 Core i-series;2020 ARM 5nm;2026 NPU de IA;2034 Chip cuántico
+Diseño|💎|D|2008 Cuerpo plástico;2012 Aluminio unibody;2018 Ultradelgada;2028 Fibra de carbono flexible;2036 Carcasa autorreparable
+Sistema|🧠|T|2008 SO clásico;2012 SSD y SO rápido;2020 Nube híbrida;2029 Agente de IA;2038 Interfaz cerebral BCI`},
+aud:{n:"Audífonos",i:"🎧",s:2008,m:.7,t:`Sonido|🎵|T|2008 Drivers dinámicos;2014 Bluetooth;2019 Audio Hi-Res;2027 Audio espacial;2036 Audio holográfico neural
+Cancelación|🔇|T|2008 Aislamiento pasivo;2016 ANC;2021 ANC adaptativo;2030 Silencio total con IA;2038 BCI auditivo
+Batería|🔋|T|2008 Con cable 4h;2016 True wireless;2020 Estuche cargador;2029 Cosecha de energía;2037 Biocombustible
+Diseño|🎧|D|2008 Plástico;2015 Ergonómico;2020 Resistente al agua;2028 Biométrico;2035 Implante suave`},
+tab:{n:"Tablets",i:"📟",s:2010,m:.9,t:`Pantalla|📟|D|2010 Capacitiva;2013 Retina;2019 OLED;2028 Tinta electrónica color;2036 Papel holográfico
+Procesador|⚙️|T|2010 ARM A8;2013 Quad-core;2018 Octa-core;2025 NPU de IA;2035 Chip cuántico
+Lápiz|✏️|D|2010 Stylus pasivo;2015 Sensible a presión;2019 Lápiz háptico;2029 Lápiz 3D en el aire;2037 Lápiz neuronal
+Batería|🔋|T|2010 8 horas;2016 Carga rápida;2022 Ánodo de silicio;2030 Solar integrada;2038 Energía ambiental`},
+wat:{n:"Relojes inteligentes",i:"⌚",s:2013,m:.8,t:`Sensores|❤️|T|2013 Pulsómetro;2018 ECG;2024 Oxígeno y presión;2031 Glucosa no invasiva;2038 Diagnóstico molecular
+Batería|🔋|T|2013 1 día;2019 3 días;2026 Carga solar;2032 Carga cinética;2039 Nanogenerador
+Pantalla|⌚|D|2013 LCD;2016 AMOLED;2022 Always-on;2030 Flexible;2037 Piel electrónica
+Conectividad|📡|T|2013 Bluetooth;2017 LTE;2023 Satélite;2031 Red 6G;2038 Red neuronal
+Materiales|💎|D|2013 Plástico;2017 Acero;2022 Zafiro;2029 Titanio vivo;2036 Tatuaje inteligente`}};
+const K=Object.keys(D);
+K.forEach(k=>D[k].br=D[k].t.split("\n").map(l=>{const[a,b,c,d]=l.split("|");return{n:a,i:b,c,l:d.split(";").map(x=>({y:+x.slice(0,4),n:x.slice(5)}))}}));
+const MN=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],KEY="ttc_save_v4";
+const OF=[["Garaje familiar",1,0,0,0],["Oficina pequeña",4,2000,25000,1],["Edificio corporativo + laboratorio I+D",10,8000,150000,3],["Campus tecnológico",99,25000,800000,8]];
+const NM=["Ana","Luis","Marta","Diego","Sofía","Carlos","Elena","Pablo","Lucía","Mateo","Valeria","Andrés","Camila","Hugo","Nora","Iván","Rosa","Tomás"],RL=["🔧 Ingeniero HW","🎨 Diseñador de producto","💾 Programador FW","🧠 Especialista en IA"];
+const PN=["Alfa","Beta","Nova","Prisma","Orion","Vega","Zenit","Atlas"],TR=["Batería","Pantalla","Procesador","Cámara","Red","Sonido","Materiales","Sistema"];
+const SH={phone:[110,200,20],pc:[230,140,8],lap:[230,130,6],aud:[150,100,45],tab:[190,150,14],wat:[110,140,32]};
+const TC=["#2a2f3f","#4b5563","#6b7280","#9ca3af","#22d3ee","#a78bfa"],GN=["Prototipo","Clásica","Moderna","Avanzada","Futurista","Visionaria"];
+const ACH=[["p1","Primer lanzamiento","🚀",s=>s.prod.length>=1],["p9","Nota 9 o más","🏆",s=>s.prod.some(p=>p.sc>=9)],["p5","5 productos lanzados","📦",s=>s.prod.length>=5],["st5","Equipo de 5 personas","👥",s=>s.staff.length>=5],
+["of3","Edificio corporativo","🏢",s=>s.off>=2],["of4","Campus tecnológico","🎓",s=>s.off>=3],["m1","Primer millón","💰",s=>s.money>=1e6],["m10","10 millones","🤑",s=>s.money>=1e7],["all","Los 6 dispositivos","🌐",s=>new Set(s.prod.map(p=>p.dv)).size>=6],
+["t25","25 tecnologías","🔬",s=>Object.keys(s.tech).length>=25],["fut","Primera tecnología futurista","🔮",s=>Object.keys(s.tech).some(k=>D[k.split(".")[0]].br[+k.split(".")[1]].l[+k.split(".")[2]].y>=2027)],["f100","Fama 100","⭐",s=>s.fame>=100],
+["y20","Sobrevives hasta 2020","📅",s=>s.y>=2020],["s5","Contratas a un 5 estrellas","🌟",s=>s.staff.some(p=>p.st==5)],["sh50","50% de cuota en un mercado","📊",s=>Object.values(s.share).some(v=>v>=.5)]];
+const EV=[["Escasez de silicio",()=>{S.fx={m:.75,l:6};return"ventas -25% durante 6 meses"}],["Demanda de patentes",()=>{const c=10000*g();S.money-=c;return"pagas "+$(c)}],
+["Producto viral en redes",()=>{S.fame+=8;S.fx={m:1.3,l:3};return"+fama y ventas 3 meses"}],["Fallo de batería viral",()=>{S.fame-=5;S.fx={m:.85,l:3};return"mala prensa, ventas -15%"}],
+["Subvención tecnológica",()=>{const c=20000*g();S.money+=c;return"recibes "+$(c)}],["Boom de la IA",()=>{S.rp+=50;return"+50 PI"}],
+["Burnout colectivo",()=>{S.staff.forEach(p=>p.str=Math.min(95,p.str+25));return"el estrés del equipo sube"}],["Filtración de prototipo",()=>{if(S.proj)S.proj.b+=10;return S.proj?"+10 bugs":"sin consecuencias"}]];
+const E=id=>document.getElementById(id),rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+let S,tab="of",sd="phone",conf=0,msg="",tt,mm="main",form={ceo:"",co:"",logo:"⚡",dif:1,look:{sk:1,hs:0,hc:0,sh:0,ac:1}};
+const g=()=>1+(S.y-2008)/8,ex=()=>(S.y-2008)/32,$=n=>(n<0?"-":"")+"$"+Math.abs(Math.round(n)).toLocaleString("es");
+const lg=t=>{S.log.unshift(MN[S.m-1]+" "+S.y+": "+t);S.log.length=Math.min(S.log.length,40)};
+function tip(t){const e=E("ts");e.textContent=t;e.style.display="block";clearTimeout(tt);tt=setTimeout(()=>e.style.display="none",3500)}
+function lvl(k,b){const n=D[k].br[b].l.length;let c=0;while(c<n&&S.tech[k+"."+b+"."+c])c++;return c}
+function cl(k,b){const v=(S.cfg.sel[k]||[])[b],l=lvl(k,b);return v==null||v<0?l:Math.min(v,l)}
+function pts(k,c){let s=0;D[k].br.forEach((br,b)=>{if(br.c==c){const n=cl(k,b);for(let j=0;j<n;j++)s+=5+j}});return s}
+function rivUp(){S.riv.forEach(c=>c.s=c.b*(1+ex()*.6)*(.9+Math.random()*.2))}
+function newS(){S={look:{...form.look},d:1,ceo:form.ceo||"Fundador",co:form.co||"Mi Empresa",logo:form.logo,dif:form.dif,rm:[1.25,1,.8][form.dif],cm:[.8,1,1.3][form.dif],cfg:{qc:5,pf:1,sel:{}},rs:null,modal:null,y:2008,m:1,money:[90000,50000,30000][form.dif],rp:15,fame:0,off:0,sp:0,foc:"bal",over:0,uid:2,n:0,lastRev:0,lastExp:0,trend:"Batería",fx:{m:1,l:0},share:{},ach:{},tech:{},prod:[],proj:null,hist:[50000],
+ staff:[{id:1,name:"Tú (Fundador)",role:0,st:3,spd:5,tec:5,dis:5,sal:0,str:0,busy:0,bt:""}],cand:[],
+ riv:[{n:"Pear",e:"🍐",b:5,s:5},{n:"Samsun",e:"🌌",b:4.6,s:4.6},{n:"Macrosoft",e:"🪟",b:4.2,s:4.2},{n:"Yoami",e:"🍊",b:3.6,s:3.6}],log:["Enero 2008: empiezas en el garaje. ¡Investiga y lanza tu primer producto!"]};gen()}
+function gen(){S.cand=[1,2,3,4].map(()=>{const r=Math.random(),st=r<.3?1:r<.6?2:r<.82?3:r<.94?4:5,role=rnd(0,S.y>=2016?3:2),c=x=>Math.max(1,Math.min(st*2,x)),
+ spd=rnd(st,st*2),tec=c(rnd(st,st*2)+(role==0||role==3?1:0)),dis=c(rnd(st,st*2)+(role==1?1:0));
+ return{id:S.uid++,name:NM[rnd(0,NM.length-1)],role,st,spd:c(spd),tec,dis,sal:Math.round((spd+tec+dis)*(80+st*40)*g()),str:0,busy:0,bt:""}})}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));return 1}catch(e){return 0}}
+function load(){try{const s=localStorage.getItem(KEY);if(!s)return 0;S=JSON.parse(s);S.sp=0;S.modal=null;S.look=S.look||{sk:1,hs:0,hc:0,sh:0,ac:1};return 1}catch(e){return 0}}
+function chk(){ACH.forEach(a=>{if(!S.ach[a[0]]&&a[3](S)){S.ach[a[0]]=1;lg("🏅 Logro: "+a[1]);tip("🏅 Logro: "+a[1]);S.rr=1}})}
+const PR={phone:600,pc:900,lap:800,aud:120,tab:400,wat:250},IMG={phone:"telefono",pc:"computadora",lap:"laptop",aud:"audifonos",tab:"tablet",wat:"reloj"},RD=[15,45,85,150,250],ORM=[1,1,1.3,1.8];
+const esc=t=>String(t).replace(/[<>&"']/g,"").slice(0,22),fans=()=>Math.round(Math.max(0,S.fame)*1500).toLocaleString("es");
+const SK=["#ffd9b8","#f1b98a","#c98a5b","#8d5a3b"],HC=["#2b1d2e","#7a3f1d","#e8c35a","#d94f7a","#4aa3df","#c9c9d6"],SC=["#e4572e","#2ec4b6","#6b46c1","#ffd23f","#3a7bd5","#5fd08a"];
+const OPT={sk:["Piel",SK],hs:["Peinado",["Corto","Puntas","Largo","Moño","Gorra"]],hc:["Pelo",HC],sh:["Camiseta",SC],ac:["Extra",["Nada","Gafas","Audífonos","Corbata"]]};
+const menuOpen=()=>E("menu").style.display=="flex",lk=p=>p.id==1?S.look:{sk:p.id*3%4,hs:p.id*7%5,hc:p.id*5%6,sh:p.id*11%6,ac:p.id%4==0?1:p.id%5==0?2:p.id%3==0?3:0};
+function chibi(l,z){const s=SK[l.sk],h=HC[l.hc],c=SC[l.sh],k="#141a36",r=(x,y,w,t,f)=>`<rect x=${x} y=${y} width=${w} height=${t} fill="${f}"/>`,hs=l.hs;let b="",f="",a="";
+ if(hs==2)b+=r(2,2,12,11,h);
+ b+=r(6,16,2,3,"#2b3566")+r(8,16,2,3,"#2b3566")+r(5,19,3,1,k)+r(8,19,3,1,k)+r(5,13,6,3,c)+r(4,13,1,3,s)+r(11,13,1,3,s);
+ b+=r(2,1,12,12,k)+r(3,2,10,10,s)+r(5,7,2,2,k)+r(10,7,2,2,k)+r(5,7,1,1,"#fff")+r(10,7,1,1,"#fff")+r(4,9,2,1,"#ff8fa3")+r(11,9,2,1,"#ff8fa3")+r(7,10,2,1,"#a0404f");
+ if(hs==0)f=r(3,1,10,3,h)+r(3,4,2,3,h)+r(11,4,2,3,h)+r(5,4,4,1,h);
+ else if(hs==1)f=r(3,2,10,2,h)+r(4,0,2,2,h)+r(7,0,2,2,h)+r(10,0,2,2,h)+r(3,4,1,3,h)+r(12,4,1,3,h)+r(6,4,3,1,h);
+ else if(hs==2)f=r(2,1,12,3,h)+r(2,4,2,8,h)+r(12,4,2,8,h)+r(5,4,5,1,h);
+ else if(hs==3)f=r(6,0,4,2,h)+r(3,2,10,2,h)+r(3,4,1,3,h)+r(12,4,1,3,h)+r(5,4,6,1,h);
+ else f=r(3,1,10,3,c)+r(2,4,12,1,c)+r(3,5,1,2,h)+r(12,5,1,2,h);
+ if(l.ac==1)a=r(4,6,4,1,k)+r(9,6,4,1,k)+r(4,9,4,1,k)+r(9,9,4,1,k)+r(4,6,1,4,k)+r(7,6,1,4,k)+r(9,6,1,4,k)+r(12,6,1,4,k)+r(8,7,1,1,k);
+ else if(l.ac==2)a=r(2,5,2,4,k)+r(12,5,2,4,k)+r(3,0,10,1,k);
+ else if(l.ac==3)a=r(7,13,2,3,"#c9391b");
+ return`<svg viewBox="0 0 16 20" width=${z} height=${z*1.25} shape-rendering=crispEdges>${b}${f}${a}</svg>`}
+const custom=l=>`<div class=cz><div class=pv>${chibi(l,128)}</div><div>${Object.keys(OPT).map(k=>{const[t,v]=OPT[k];return`<div class=cr2><b>${t}</b><div class=row>${v.map((x,i)=>x[0]=="#"?`<button class="sw${l[k]==i?" on":""}" style="background:${x}" aria-label="${t} ${i+1}" data-a=lk data-p=${k}.${i}></button>`:`<button class="${l[k]==i?"on":""}" data-a=lk data-p=${k}.${i}>${x}</button>`).join("")}</div></div>`}).join("")}<div class=row><button data-a=rl>🎲 Aleatorio</button></div></div></div>`;
+const DEC=[[["🛠️",44,34],["📦",91,68],["🚲",1,66]],[["🖼️",44,30],["🪴",1,64],["☕",92,70]],[["🔬",44,30],["🪴",1,64],["🖥️",91,66]],[["🏆",44,30],["🌳",1,60],["🚀",91,64]]];
+function scene(o){const act=S.proj||S.rs,n=Math.min(Math.max(S.staff.length,Math.min(o[1],10)),12);
+ const sl=S.staff.slice(0,12).map(p=>`<div class=sl><span class=bb>${p.busy?(p.bt=="tr"?"📚":"🏖️"):p.str>=80?"💤":""}</span><div class=av2>${chibi(lk(p),40)}</div><div class="dk${p.busy?" off":""}"><i class=mn></i></div><small>${p.name.split(" ")[0]}</small></div>`);
+ for(let i=sl.length;i<n;i++)sl.push(`<div class="sl em"><div class=dk></div><small>libre</small></div>`);
+ return`<div class="os o${S.off}${act?" act":""}"><div class=wn></div><div class=sg>${o[0]}</div>${DEC[S.off].map(d=>`<span class=dc style="left:${d[1]}%;top:${d[2]}%">${d[0]}</span>`).join("")}<div class=sls>${sl.join("")}</div></div>`}
+let selN=null,hl="";
+const nkey=(k,b,n)=>k+"."+b+"."+n;
+function nst(k,b,n){const nd=D[k].br[b].l[n],l=lvl(k,b);if(l>n)return"done";if(S.rs&&S.rs.k==nkey(k,b,n))return"act";return l==n&&S.y>=nd.y&&S.y>=D[k].s?"av":"lk"}
+function defSel(k){if(S.rs&&S.rs.k.split(".")[0]==k)return S.rs.k;for(let b=0;b<D[k].br.length;b++){const n=lvl(k,b);if(n<D[k].br[b].l.length&&nst(k,b,n)=="av")return nkey(k,b,n)}return nkey(k,0,0)}
+function tree(){const k=sd,d=D[k];if(!selN||selN.split(".")[0]!=k)selN=defSel(k);
+ const rows=d.br.map((br,b)=>`<div class=brn><div class=bl><div class=bi>${br.i}</div><b>${br.n}</b><small>${br.c=="T"?"🔧 Tecnología":"🎨 Diseño"}, ${lvl(k,b)}/${br.l.length}</small>${br.n==S.trend?"<small class=tr>⭐ Tendencia</small>":""}</div><div class=nts>${br.l.map((nd,n)=>{const st=nst(k,b,n),key=nkey(k,b,n);return`<button class="nt ${st}${nd.y>=2027?" fut":""}${key==selN?" sel":""}" data-a=sel data-p=${key}><span class=ni>${st=="done"?"✅":st=="act"?"⏳":st=="lk"?"🔒":br.i}</span><span class=nn>${nd.n}</span><small>${nd.y}${nd.y>=2027?" 🔮":""}</small></button>`}).join("")}</div></div>`).join("");
+ return`<div class="card trw"><h2>🌳 Árbol de ${d.n}</h2><small>Toca una tecnología para ver su detalle. ✅ lista, ⏳ en curso, 🔒 bloqueada, 🔮 futura. Cada una suma puntos de Tecnología o Diseño a este dispositivo. Tendencia del año: <b>${S.trend}</b></small>${rows}</div>${detail()}`}
+function detail(){const[k,b,n]=selN.split(".").map((x,i)=>i?+x:x),br=D[k].br[b],nd=br.l[n],st=nst(k,b,n),r=12*(n+1)**2,m=2500*(n+1)*g()*S.cm,okp=S.rp>=r,okm=S.money>=m,
+ why=st=="done"?"✅ Ya investigada":st=="act"?"⏳ En investigación…":S.y<nd.y?"🔒 Disponible desde "+nd.y:lvl(k,b)<n?"🔒 Primero investiga: "+br.l[lvl(k,b)].n:S.rs?"⏳ Espera a que termine la investigación actual":"";
+ return`<div class="card tdp"><h2>${br.i} ${nd.n}</h2><p><b>${D[k].n}: ${br.n}</b><br><small>Año ${nd.y}${nd.y>=2027?" 🔮 era futurista":""}</small></p><div class=g3><div>${br.c=="T"?"🔧":"🎨"}<br><b>+${5+n}</b><br><small>${br.c=="T"?"Tecnología":"Diseño"}</small></div><div>⏱<br><b>${RD[n]}</b><br><small>días</small></div><div>📦<br><b>${n+1}/${br.l.length}</b><br><small>nivel</small></div></div>${st=="done"?"":`<p>🧪 <b style="color:var(--${okp?"ok":"bad"})">${r} PI</b> <small>(tienes ${Math.floor(S.rp)})</small><br>💰 <b style="color:var(--${okm?"ok":"bad"})">${$(m)}</b> <small>(tienes ${$(S.money)})</small></p>`}${br.n==S.trend?"<p><small>⭐ Tendencia del año: con esta rama al nivel 3 o más, tu producto sube de nota.</small></p>":""}${why?`<p class=mu>${why}</p>`:""}<button class=go style="width:100%" data-a=buy data-p=${selN} ${st=="av"&&!S.rs?"":"disabled"}>🔬 Investigar</button></div>`}
+function hint(){const pr=S.proj;let t,b="";if(S.over)return"";
+ if(pr&&pr.nf){t="¡Tu producto está listo! Lánzalo o sigue puliendo bugs.";b=`<button class=go data-a=go data-p=dv>🛠️ Ir a Desarrollar</button>`}
+ else if(!S.sp){t="El tiempo está en pausa.";b=`<button class=go data-a=spd data-p=1>▶ Reanudar</button>`}
+ else if(!pr){t="No tienes ningún producto en desarrollo.";b=`<button class=go data-a=go data-p=dv>🛠️ Crear producto</button>`}
+ else if(!S.rs&&S.rp>=12){t="Mientras desarrollas puedes investigar una tecnología en paralelo.";b=`<button data-a=go data-p=te>🔬 Investigar</button>`}
+ else if(S.staff.length<2&&S.money>8000){t="Estás solo: contrata gente para avanzar más rápido.";b=`<button data-a=go data-p=of>🏠 Contratar</button>`}
+ else if(pr.dd>=10){t="Ya puedes lanzar cuando quieras; más tiempo de desarrollo da más calidad.";b=`<button data-a=go data-p=dv>🚀 Ver producto</button>`}
+ else t="Todo en marcha. Investiga y contrata mientras avanza el proyecto.";
+ return`<span>🧭 ${t}</span>${b}`}
+function strip(){hl=hint();return`<div class=ac><button class=ai data-a=go data-p=dv><span id=at1></span><span class=bar><i id=ab1></i></span></button><button class=ai data-a=go data-p=te><span id=at2></span><span class=bar><i id=ab2></i></span></button></div><div class=hint id=hn style="${hl?"":"display:none"}">${hl}</div>`}
+function act(){const a=E("at1");if(!a)return;const pr=S.proj,rs=S.rs;
+ if(pr){const pg=Math.min(1,(pr.t+pr.dz)/pr.tg);a.textContent="🛠️ "+pr.nm+" · "+Math.round(pg*100)+"%";E("ab1").style.width=pg*100+"%"}else{a.textContent="🛠️ Sin producto en desarrollo";E("ab1").style.width="0"}
+ if(rs){const[k,b,n]=rs.k.split("."),pc=Math.round((1-rs.left/rs.tot)*100);E("at2").textContent="🔬 "+D[k].br[b].l[n].n+" · "+pc+"%";E("ab2").style.width=pc+"%"}else{E("at2").textContent="🔬 Sin investigación activa";E("ab2").style.width="0"}
+ const h=hint();if(h!=hl){hl=h;const n=E("hn");n.innerHTML=h;n.style.display=h?"":"none"}}
+function tick(){
+ const o={t:0,d:0,f:0};let rp=0,rt=0;
+ S.staff.slice().forEach(p=>{
+  if(p.busy>0){if(--p.busy==0&&p.bt=="tr"){const k=p.tec<=p.dis?"tec":"dis";p[k]=Math.min(p.st*2,p[k]+1);lg("📚 "+p.name+" mejoró su "+(k=="tec"?"tecnología":"diseño"));S.rr=1}return}
+  const ef=1-p.str/200,r=p.role;p.str=Math.min(100,p.str+(p.st>=4?3:4)/30);rp+=p.tec*(r==3?.5:.3)*ef/30;rt+=p.tec*ef;let t,d,f=0;
+  if(r==0){t=p.spd*p.tec/5;d=p.spd*p.dis/15}else if(r==1){d=p.spd*p.dis/5;t=p.spd*p.tec/15}else if(r==2){t=p.spd*p.tec/7;d=p.spd*p.dis/12;f=(t+d)*.3}else{t=p.spd*p.tec/4.5*(S.y>=2016?1:.7);d=p.spd*p.dis/15;f=(t+d)*.15}
+  o.t+=t*ef/30;o.d+=d*ef/30;o.f+=f*ef/30;
+  if(p.str>=100&&p.id>1){S.staff=S.staff.filter(x=>x!=p);lg("😤 "+p.name+" renunció por estrés");S.rr=1}else if(p.str>=80&&!p.w){p.w=1;lg("😮‍💨 "+p.name+" está agotado: dale vacaciones")}else if(p.str<70)p.w=0});
+ S.rp+=(2/30+rp)*ORM[S.off];
+ if(S.rs){S.rs.left-=(1+rt*.05)*ORM[S.off];if(S.rs.left<=0){const[k,b,n]=S.rs.k.split("."),nd=D[k].br[b].l[n];S.tech[S.rs.k]=1;lg("🔬 Investigado: "+nd.n+" ("+D[k].n+")");tip("🔬 Investigado: "+nd.n);S.rs=null;chk();S.rr=1}}
+ const pr=S.proj;
+ if(pr){const f=S.foc;if(f=="pul")pr.b=Math.max(0,pr.b-(o.t+o.d)*.5-o.f);else{const kt=f=="tec"?1.5:f=="dis"?.5:1,kd=f=="dis"?1.5:f=="tec"?.5:1;pr.t+=o.t*kt;pr.dz+=o.d*kd;pr.b+=(o.t*kt+o.d*kd)*(.12+Math.random()*.1)}
+  pr.dd++;if(!pr.nf&&pr.t+pr.dz>=pr.tg){pr.nf=1;S.sp=0;lg("✅ ¡Producto listo! Púlelo o lánzalo ya.");S.rr=1}}
+ if(++S.d>30){S.d=1;mtick()}}
+function mtick(){
+ const rs=S.riv.reduce((a,c)=>a+c.s*c.s,0);let rev=0;S.share={};
+ K.forEach(k=>{const ps=S.prod.filter(p=>p.act&&p.dv==k);if(!ps.length)return;const w=ps.map(p=>p.sc*p.sc*(1+p.hype/100)*(1+S.fame/200)*Math.max(.05,1-p.age/30)*Math.pow(p.pf,-1.6)),P=w.reduce((a,b)=>a+b,0),sh=P/(P+rs),rv=sh*D[k].m*22000*g()*S.rm*(S.fx.l>0?S.fx.m:1);
+  S.share[k]=sh;ps.forEach((p,i)=>{const x=rv*w[i]/P*Math.max(.05,p.pf-.3-.04*p.qc-(p.cc||0))/.5;p.total+=x;rev+=x})});
+ S.prod.forEach(p=>{if(p.act&&++p.age>=30){p.act=0;lg("📦 "+p.name+" quedó obsoleto")}});if(S.fx.l>0)S.fx.l--;
+ const exp=(S.staff.reduce((a,p)=>a+p.sal,0)+OF[S.off][2]*g())*S.cm;S.lastRev=rev;S.lastExp=exp;S.money+=rev-exp;
+ if(Math.random()<.07){const e=EV[rnd(0,EV.length-1)],r=e[1]();lg("⚡ "+e[0]+": "+r);S.modal={t:e[0],r};S.pv=S.sp;S.sp=0;S.rr=1}
+ if(++S.m>12){S.m=1;S.y++;S.trend=TR[rnd(0,TR.length-1)];rivUp();lg("📈 Tendencia del año: "+S.trend);save();if(S.y==2027)lg("🔮 Comienza la era futurista.")}
+ if(S.m%3==1){gen();if(tab=="of")S.rr=1}chk();
+ if(S.money<-50000)S.over=1;else if(S.y>2040)S.over=2;if(S.over){S.sp=0;S.rr=1}}
+const hide=()=>E("menu").style.display="none",showMenu=()=>{E("menu").style.display="flex";E("menu").innerHTML=menu();setTimeout(()=>E("menu").classList.remove("fst"),800)};
+const G={lk(p){const[k,v]=p.split("."),m=menuOpen(),L=m?form.look:S.look;L[k]=+v;if(m)E("czm").innerHTML=custom(L);else R()},rl(){const m=menuOpen(),L=m?form.look:S.look;L.sk=rnd(0,3);L.hs=rnd(0,4);L.hc=rnd(0,5);L.sh=rnd(0,5);L.ac=rnd(0,3);if(m)E("czm").innerHTML=custom(L);else R()},
+spd(p){S.sp=+p;hdr();act()},go(p){tab=p;msg="";R()},sd(p){sd=p;selN=null;R()},sel(p){selN=p;E("tg").innerHTML=tree();if(innerWidth<=1100)E("tg").scrollIntoView({block:"start"})},sf(p){S.foc=p;R()},cancel(){S.proj=null;R()},mok(){S.modal=null;S.sp=S.pv||0;R()},
+pick(p){const[k,b,v]=p.split("."),a=S.cfg.sel[k]||(S.cfg.sel[k]=[]);a[+b]=+v;R()},
+launch(){const pr=S.proj;if(!pr||pr.dd<10)return;const k=pr.dv,d=D[k],e0=ex(),q=S.cfg.qc,T=pr.t+pts(k,"T"),Dd=pr.dz+pts(k,"D")+(q-5)*3,
+ ra=(Math.min(1.3,T/(40+e0*140))+Math.min(1.3,Dd/(30+e0*100)))/2,bR=pr.b/(pr.t+pr.dz+1)*(1-q*.04),tb=d.br.some((b,i)=>b.n==S.trend&&cl(k,i)>=3)?.6:0,
+ sc=Math.max(1,Math.min(10,Math.round((3+7*ra-Math.min(5,bR*12)+tb+(q-5)*.2)*10)/10));S.fame+=Math.max(-3,(sc-6)*2);
+ const rv=sc>=9?"Obra maestra de la industria":sc>=7?"Muy recomendado por la prensa":sc>=5?"Correcto, pero sin brillo":"La prensa lo destroza";
+ S.prod.push({name:d.i+" "+pr.nm,dv:k,sc,bugs:Math.round(bR*100),y:S.y,hype:pr.hype,age:0,total:0,act:1,pf:S.cfg.pf,qc:q,cc:ccost(k)});
+ lg("📰 "+pr.nm+": "+sc+"/10 — "+rv+(bR>.2?" (muchos bugs)":"")+(tb?" · acorde a la tendencia":""));S.proj=null;msg="📰 Prensa: "+sc+"/10 — "+rv;chk();save();R()},
+start(p){const c=15000*g()*S.cm;if(S.proj||S.money<c||S.y<D[p].s)return;S.money-=c;S.n++;sd=p;S.proj={dv:p,t:0,dz:0,b:0,dd:0,hype:0,tg:Math.round(42+ex()*110),nm:PN[S.n%8]+" "+S.y};msg="";lg("🛠️ Inicias "+S.proj.nm);R()},
+mkt(p){const c=[5000,20000,60000][p]*g();if(!S.proj||S.money<c)return;S.money-=c;S.proj.hype=Math.min(150,S.proj.hype+[10,30,70][p]);R()},
+buy(p){if(S.rs){tip("⏳ Ya hay una investigación en curso");return}const[k,b,n]=p.split(".").map((x,i)=>i?+x:x),nd=D[k].br[b].l[n];if(lvl(k,b)!=n||S.y<nd.y||S.y<D[k].s)return;const r=12*(n+1)**2,m=2500*(n+1)*g()*S.cm;if(S.rp<r){tip("🧪 Te faltan "+Math.ceil(r-S.rp)+" PI. Pulsa ▶ para que el equipo genere más.");return}if(S.money<m){tip("💰 Te faltan "+$(m-S.money));return}S.rp-=r;S.money-=m;S.rs={k:p,tot:RD[n],left:RD[n]};lg("⏳ Investigando: "+nd.n);R()},
+hire(p){const c=S.cand.find(x=>x.id==p);if(!c||S.staff.length>=OF[S.off][1]||S.money<c.sal*2)return;S.money-=c.sal*2;S.staff.push(c);S.cand=S.cand.filter(x=>x.id!=p);lg("🤝 Contratas a "+c.name+" "+"⭐".repeat(c.st));chk();R()},
+upg(){const n=OF[S.off+1];if(!n||S.money<n[3]||S.staff.length<n[4])return;S.money-=n[3];S.off++;lg("🏢 Te mudas a: "+n[0]);chk();save();R()},
+vac(p){const e=S.staff.find(x=>x.id==p);e.busy=30;e.bt="vac";e.str=0;R()},
+trn(p){const c=4000*g();if(S.money<c)return;S.money-=c;const e=S.staff.find(x=>x.id==p);e.busy=30;e.bt="tr";R()},
+raise(p){const e=S.staff.find(x=>x.id==p);if(!e.sal)return;e.sal=Math.round(e.sal*1.1);e.str=Math.max(0,e.str-25);R()},
+fire(p){S.staff=S.staff.filter(x=>x.id!=p);R()},
+save(){msg=save()?"💾 Partida guardada":"No se pudo guardar";R()},load(){msg=load()?"📂 Partida cargada":"No hay partida guardada";R()},
+reset(){if(conf){newS();tab="of";conf=0;try{localStorage.removeItem(KEY)}catch(e){}msg="Partida reiniciada"}else{conf=1;msg=""}R()},
+again(){E("ov").style.display="none";mm="main";showMenu()},menu(){S.sp=0;mm="main";showMenu()},
+newg(){mm="new";showMenu()},cred(){mm="cred";showMenu()},back(){mm="main";showMenu()},logo(p){form.logo=p;showMenu()},dif(p){form.dif=+p;showMenu()},
+begin(){form.ceo=esc(form.ceo||"Fundador");form.co=esc(form.co||"Mi Empresa");newS();tab="of";hide();R();tip("▶ Pulsa Play (arriba a la derecha) para que corra el tiempo")},cont(){if(load()){tab="of";hide();R()}else tip("No hay partida guardada")}};
+function menu(){let sv=null;try{sv=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+ const h=`<div class=mc><h1 class=neon>TECH DEV<br>TYCOON</h1><p class=mu>2008 — 2040 · La historia del hardware</p>`;
+ if(mm=="main")return h+`<button class="go mb" data-a=newg>🚀 Nueva Partida</button><button class=mb data-a=cont ${sv?"":"disabled"}>📂 Cargar Partida${sv?`<br><small>${sv.logo||""} ${sv.co||""} · ${MN[sv.m-1]} ${sv.y}</small>`:""}</button><button class=mb data-a=cred>ℹ️ Créditos</button></div>`;
+ if(mm=="cred")return h+`<div class=card>Diseño y código: Claude (Anthropic).<br>Marcas rivales ficticias: Pear, Samsun, Macrosoft y Yoami.<br>Imágenes opcionales en <code>imagenes/</code>: telefono, computadora, laptop, audifonos, tablet y reloj (.png).</div><button class=mb data-a=back>← Volver</button></div>`;
+ return h+`<div class=card style="text-align:left"><b>Fundador / CEO</b><input type=text data-f=ceo maxlength=20 placeholder="Tu nombre" value="${form.ceo}"><b>Nombre de la empresa</b><input type=text data-f=co maxlength=20 placeholder="Mi Empresa" value="${form.co}"><b>Logotipo</b><div class="row lgs">${["⚡","🚀","🧠","🔷","🪐","🦾"].map(x=>`<button class="${form.logo==x?"on":""}" data-a=logo data-p=${x}>${x}</button>`).join("")}</div><b>Dificultad</b><div class=row>${["Fácil","Normal","Difícil"].map((x,i)=>`<button class="${form.dif==i?"on":""}" data-a=dif data-p=${i}>${x}</button>`).join("")}</div><small>${["$90,000 iniciales y mejores ventas","$50,000 iniciales","$30,000 iniciales, costos altos y ventas menores"][form.dif]}</small></div><div class=card style="text-align:left"><b>Tu personaje</b><div id=czm>${custom(form.look)}</div></div><button class="go mb" data-a=begin>▶ Comenzar en el garaje (2008)</button><button class=mb data-a=back>← Volver</button></div>`}
+const info=()=>`<b class=lg>${S.logo} ${S.co}</b><span class=cs>${chibi(S.look,22)} ${S.ceo}</span><span>💰 ${$(S.money)}</span><span>📅 ${S.d} ${MN[S.m-1]} ${S.y}</span><span>🧪 ${Math.floor(S.rp)} PI</span>${S.rs?`<span>🔬 ${Math.round((1-S.rs.left/S.rs.tot)*100)}%</span>`:""}<span>🏢 Nv ${S.off+1}</span><span>❤️ ${fans()}</span><span>📈 ${$(S.lastRev)}/mes · ${S.prod.filter(p=>p.act).length} activos</span>`;
+function hdr(){E("hd").innerHTML=`<div id=hi>${info()}</div><span class=sp>${[["⏸️",0,""],["▶️",1,"1x"],["⏩",2,"2x"],["⏭️",3,"5x"]].map(a=>`<button class="${S.sp==a[1]?"on":""}" data-a=spd data-p=${a[1]}>${a[0]}${a[2]}</button>`).join("")}</span><div class=pb><i id=pbi style="width:${((S.y-2008)*12+S.m-1)/384*100}%"></i></div>`}
+function mock(k){const d=D[k],[w,h,r]=SH[k],ls=d.br.map((b,i)=>cl(k,i)),mx=Math.max(...ls);
+ return`<div class=mk><div class="fr${S.proj&&S.proj.dv==k?" wk":""}${mx>=4?" gl":""}" style="width:${w}px;height:${h}px;border-radius:${r}px;background:linear-gradient(145deg,${TC[mx]},#0b1020)"><img src="imagenes/${IMG[k]}.png" alt="" style="max-height:55%;max-width:85%" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><div class=big>${d.i}</div><div class=chs>${d.br.map((b,i)=>`<span class="ch${ls[i]?"":" off"}" title="${b.n}">${b.i}<sup>${ls[i]}</sup></span>`).join("")}</div></div>Generación: <b>${GN[mx]}</b>${d.br.map((b,i)=>ls[i]?`<br><small>${b.i} ${b.l[ls[i]-1].n}</small>`:"").join("")}</div>`}
+function meters(){const pr=S.proj,pg=Math.min(1,(pr.t+pr.dz)/pr.tg);
+ return`Fase: <b>${pg<.34?"Concepto":pg<.67?"Desarrollo":pg<1?"Pulido":"Listo"}</b> · ${pr.dd} días · ${Math.round(pg*100)}%<div class=bar><i style="width:${pg*100}%"></i></div><div class=g3><div style="color:var(--ac)">🔧 Tecnología<br><b>${Math.round(pr.t)}</b><br><small>+${pts(pr.dv,"T")} árbol</small></div><div style="color:var(--vi)">🎨 Diseño<br><b>${Math.round(pr.dz)}</b><br><small>+${pts(pr.dv,"D")} árbol</small></div><div style="color:var(--bad)">🐞 Bugs<br><b>${Math.round(pr.b)}</b></div></div><p>📣 Hype: <b>${pr.hype}</b></p>`}
+function rsb(){if(!S.rs)return"<span class=mu>Sin investigación activa. Elige una tecnología.</span>";const[k,b,n]=S.rs.k.split("."),pc=Math.round((1-S.rs.left/S.rs.tot)*100);return`🔬 <b>${D[k].br[b].l[n].n}</b> — ${Math.ceil(S.rs.left)} días restantes (${pc}%)<div class=bar><i style="width:${pc}%"></i></div>`}
+function live(){E("hi").innerHTML=info();E("pbi").style.width=((S.y-2008)*12+S.m-1)/384*100+"%";if(S.rr){S.rr=0;R();return}act();const l=E("lv");if(l&&S.proj)l.innerHTML=meters();const r=E("rsb");if(r)r.innerHTML=rsb();document.querySelectorAll("[data-f]").forEach(e=>{const p=S.staff.find(x=>x.id==e.dataset.f);if(p)e.style.width=p.str+"%"})}
+const ccost=k=>D[k].br.reduce((a,_,i)=>a+cl(k,i)*.008,0);
+const plab=k=>Math.round(S.cfg.pf*100)+"% · "+$(PR[k]*S.cfg.pf);
+function creator(k){return`<h3>🧩 Componentes (elige qué instalar)</h3>${D[k].br.map((b,i)=>{const l=lvl(k,i),c=cl(k,i);return l?`<div style="margin-bottom:8px"><b>${b.i} ${b.n}</b> <small>(${b.c})</small><div class=row><button class="nd${c==0?" on":""}" style="width:auto;margin:0" data-a=pick data-p=${k}.${i}.0>Ninguno<small>+0 pts · costo 0%</small></button>${Array.from({length:l},(_,j)=>{const n=j+1;return`<button class="nd${c==n?" on":""}" style="width:auto;margin:0" data-a=pick data-p=${k}.${i}.${n}>${b.l[j].n}<small>+${n*5+n*(n-1)/2} ${b.c} · costo +${(n*.8).toFixed(1)}%</small></button>`}).join("")}</div></div>`:`<div class="mu" style="margin-bottom:6px">${b.i} ${b.n}: sin investigar</div>`}).join("")}<div class=card style="margin:6px 0"><b>Resumen:</b> 🔧 ${pts(k,"T")} T · 🎨 ${pts(k,"D")} D · costo de componentes +${(ccost(k)*100).toFixed(1)}% del precio</div><h3 style="margin-top:10px">🎚️ Calidad de materiales: <span id=qv>${S.cfg.qc}/10</span></h3><input type=range min=1 max=10 value=${S.cfg.qc} data-q=qc style="width:100%"><h3>💲 Precio: <span id=pv>${plab(k)}</span></h3><input type=range min=50 max=150 value=${Math.round(S.cfg.pf*100)} data-q=pf style="width:100%"><small>Más calidad = menos bugs y mejor nota, pero menor margen. Precio alto = menos demanda.</small>`}
+const V={
+of(){const o=OF[S.off],n=OF[S.off+1],card=(p,b)=>`<div class="card fi s${p.st}"><div class=cr><div class=av>${chibi(lk(p),44)}</div><div><b>${p.name}</b> ${"⭐".repeat(p.st)}<br>${RL[p.role]}<br>⚡${p.spd} 🔧${p.tec} 🎨${p.dis} · ${$(p.sal)}/mes</div></div>${b}</div>`;
+ return`${scene(o)}<div class=card><h2>🏢 ${o[0]}</h2>Capacidad: ${S.staff.length}/${o[1]>90?"∞":o[1]} · Renta: ${o[2]?$(o[2]*g())+"/mes":"gratis"}${S.off==2?" · Laboratorio I+D (+30% velocidad)":S.off==3?" · Bonus de investigación (+80%)":""}
+ ${n?`<div class=row><button class=go ${S.money<n[3]||S.staff.length<n[4]?"disabled":""} data-a=upg>Mudarse a ${n[0]} (${$(n[3])}, ${n[4]}+ empleados)</button></div>`:"<div class=mu>Nivel máximo alcanzado.</div>"}</div>
+ <h2>👥 Equipo</h2><div class=gr>${S.staff.map(p=>card(p,`<div class=bar><i class=f data-f=${p.id} style="width:${p.str}%"></i></div><small>${p.busy?(p.bt=="tr"?"📚 En capacitación":"🏖️ De vacaciones"):"Fatiga / estrés"}</small><div class=row><button data-a=vac data-p=${p.id}>🏖️ Vacaciones</button><button data-a=trn data-p=${p.id} ${S.money<4000*g()?"disabled":""}>📚 Curso ${$(4000*g())}</button>${p.id>1?`<button data-a=raise data-p=${p.id}>💵 +10%</button><button class=rd data-a=fire data-p=${p.id}>Despedir</button>`:""}</div>`)).join("")}</div>
+ <h2>📋 Mercado de contratación</h2><div class=gr>${S.cand.map(p=>card(p,`<div class=row><button class=go data-a=hire data-p=${p.id} ${S.staff.length>=o[1]||S.money<p.sal*2?"disabled":""}>Contratar (${$(p.sal*2)})</button></div>`)).join("")}</div><small>Cambian cada 3 meses. ${S.staff.length>=o[1]?"Oficina llena: mejora de nivel.":""}</small>
+ <div class=card style="margin-top:10px"><h3>📰 Noticias</h3><div class=log>${S.log.map(l=>"<div>"+l+"</div>").join("")}</div></div>`},
+te(){return`<div class=row style="margin:0 0 12px">${K.map(k=>`<button class="${k==sd?"on":""}" ${S.y<D[k].s?"disabled":""} data-a=sd data-p=${k}>${D[k].i} ${D[k].n}${S.y<D[k].s?" ("+D[k].s+")":""}</button>`).join("")}</div><div class=card><div id=rsb>${rsb()}</div></div><div id=tg class=tg>${tree()}</div>`},
+dv(){const pr=S.proj,c=15000*g()*S.cm,k=pr?pr.dv:sd;
+ const right=!pr?`<h2>🛠️ Nuevo producto</h2>${msg?`<p><b>${msg}</b></p>`:""}<div class=row style="margin:0 0 8px">${K.map(x=>`<button class="${x==sd?"on":""}" ${S.y<D[x].s?"disabled":""} data-a=sd data-p=${x}>${D[x].i} ${D[x].n}</button>`).join("")}</div>${creator(k)}<div class=row><button class=go data-a=start data-p=${k} ${S.y<D[k].s||S.money<c?"disabled":""}>🛠️ Iniciar ${D[k].n} (${$(c)})</button></div>`
+ :`<h2>${D[k].i} ${pr.nm}</h2><div id=lv>${meters()}</div><h3>Enfoque del equipo</h3><div class=row>${[["tec","🔧 Tecnología"],["bal","⚖️ Equilibrado"],["dis","🎨 Diseño"],["pul","🐞 Pulir bugs"]].map(a=>`<button class="${S.foc==a[0]?"on":""}" data-a=sf data-p=${a[0]}>${a[1]}</button>`).join("")}</div><h3 style="margin-top:10px">📣 Marketing (hype)</h3><div class=row>${[["Pequeña +10",0],["Mediana +30",1],["Grande +70",2]].map(a=>`<button data-a=mkt data-p=${a[1]} ${S.money<[5000,20000,60000][a[1]]*g()?"disabled":""}>${a[0]} (${$([5000,20000,60000][a[1]]*g())})</button>`).join("")}</div><div style="margin-top:10px">${creator(k)}</div><div class=row><button class=go data-a=launch ${pr.dd<10?"disabled":""}>🚀 Lanzar ahora</button><button class=rd data-a=cancel>Cancelar</button></div>`;
+ return`<div class=dv><div class=card>${mock(k)}</div><div class=card>${right}</div></div>`},
+mk(){const rs=S.riv.reduce((a,c)=>a+c.s*c.s,0),av=K.filter(k=>S.y>=D[k].s);
+ return`<div class=card><h2>📊 Mercado y competencia</h2>Tendencia del año: <b>${S.trend}</b> · Ingresos <b style="color:var(--ok)">${$(S.lastRev)}</b>/mes · Gastos <b style="color:var(--bad)">${$(S.lastExp)}</b>/mes${S.fx.l>0?` · Efecto de mercado ×${S.fx.m} (${S.fx.l} meses)`:""}<h3 style="margin-top:8px">❤️ Fans: ${fans()}</h3><div class=bar><i style="width:${Math.min(100,Math.max(0,S.fame)/2)}%"></i></div>
+ <div style="overflow-x:auto"><table><tr><th>Mercado<th>Tú${S.riv.map(c=>"<th>"+c.e+" "+c.n).join("")}</tr>${av.map(k=>{const sh=S.share[k]||0;return`<tr><td>${D[k].i} ${D[k].n}<td><b>${Math.round(sh*100)}%</b>${S.riv.map(c=>"<td>"+Math.round((1-sh)*c.s*c.s/rs*100)+"%").join("")}</tr>`}).join("")}</table></div></div>
+ <div class=card><h3>Productos lanzados</h3><div style="overflow-x:auto"><table><tr><th>Producto<th>Año<th>Nota<th>Bugs<th>Precio<th>Calidad<th>Ventas<th>Estado</tr>${S.prod.slice().reverse().slice(0,15).map(p=>`<tr><td>${p.name}<td>${p.y}<td>${p.sc}<td>${p.bugs}%<td>${Math.round(p.pf*100)}%<td>${p.qc}/10<td>${$(p.total)}<td>${p.act?"En venta":"Obsoleto"}</tr>`).join("")||"<tr><td colspan=8 class=mu>Aún no has lanzado nada</tr>"}</table></div></div>`},
+lo(){return`<h2>🏆 Logros (${Object.keys(S.ach).length}/${ACH.length})</h2><div class=gr>${ACH.map(a=>`<div class="card fi ${S.ach[a[0]]?"s5":""}" style="opacity:${S.ach[a[0]]?1:.45}"><big>${a[2]}</big> <b>${a[1]}</b><br><small>${S.ach[a[0]]?"¡Conseguido!":"Bloqueado"}</small></div>`).join("")}</div>`},
+pj(){return`<div class=card><h2>👤 Tu personaje</h2>${custom(S.look)}</div>`},
+op(){return`<div class=card><h2>⚙️ Opciones</h2><div class=row><button class=go data-a=save>💾 Guardar partida</button><button data-a=load>📂 Cargar partida</button><button class=rd data-a=reset>${conf?"⚠️ Pulsa otra vez para borrar todo":"🗑️ Reiniciar partida"}</button><button data-a=menu>🏠 Menú principal</button></div><p><b>${msg}</b></p><p class=mu>Autoguardado cada año del juego y al lanzar un producto. Se guarda todo el estado de tu empresa.</p></div>`}};
+function R(){hdr();E("nav").innerHTML=[["of","🏠 Oficina"],["pj","👤 Yo"],["te","🔬 Árbol"],["dv","🛠️ Crear"],["mk","📊 Mercado"],["lo","🏆 Logros"],["op","⚙️ Ajustes"]].map(a=>`<button class="${tab==a[0]?"on":""}" data-a=go data-p=${a[0]}><span class=e>${a[1].split(" ")[0]}</span><span class=l>${a[1].split(" ").slice(1).join(" ")}</span></button>`).join("");
+ if(tab!="op")conf=0;E("main").innerHTML=strip()+V[tab]();act();const ov=E("ov"),md=E("md");
+ md.style.display=S.modal?"flex":"none";if(S.modal)md.innerHTML=`<div class=card><h2>⚡ ${S.modal.t}</h2><p>${S.modal.r}</p><button class=go data-a=mok>Continuar</button></div>`;
+ if(S.over){const sc=Math.round(S.fame*10+Math.max(0,S.money)/1000+S.prod.length*5+Object.keys(S.ach).length*10);ov.style.display="flex";ov.innerHTML=`<div class=card><h2>${S.over==2?"🏆 2040: fin de la partida":"💥 Bancarrota"}</h2>${S.co} · Dinero ${$(S.money)} · Fans ${fans()} · ${S.prod.length} productos · ${Object.keys(S.ach).length} logros<p>Puntuación: <b>${sc}</b></p><button class=go data-a=again>Menú principal</button></div>`}else ov.style.display="none"}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(b&&!b.disabled&&G[b.dataset.a])G[b.dataset.a](b.dataset.p)});
+document.addEventListener("change",e=>{const t=e.target;if(t.dataset&&t.dataset.c&&G[t.dataset.c])G[t.dataset.c](t.dataset.p,t.value)});
+document.addEventListener("input",e=>{const t=e.target,x=t.dataset||{};if(x.f)form[x.f]=t.value;if(x.q){S.cfg[x.q]=x.q=="pf"?t.value/100:+t.value;const k=S.proj?S.proj.dv:sd;E("qv").textContent=S.cfg.qc+"/10";E("pv").textContent=plab(k)}});
+newS();R();showMenu();window.__G={G,tick,S:()=>S,R,showMenu};
+(function lp(){if(S.sp&&!S.over&&!S.modal){tick();live()}setTimeout(lp,[300,300,150,60][S.sp])})();
+})();
+</script><script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script></body></html>
