@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.diarreon_pupuson.twa",
+        "sha256_cert_fingerprints": ["44:53:1D:AA:12:5D:19:3F:03:2C:75:41:78:FA:89:EF:94:94:DF:45:22:DF:F8:3B:F2:4F:E0:34:3A:82:5D:9E"]
+      }
+    }]
